@@ -24,13 +24,17 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
   * **统计图类**
   
     - [x] 微信好友的性别比例和人数统计图
+    ![Alt Text](/template/gender.gif "gender_distribution")
     - [x] 基于好友个性签名制成的云图
+    ![Alt Text](/template/wordcloud.gif "wc")
+    ![Alt Text](/template/wordcloud_cn.gif "main_cli")
           - [x] 支持图片蒙版
           - [x] 支持英文过滤
           - [x] 关键词模式
           
     - [x] 微信好友的国内外地域分布统计图
-    - [x] 生成好友头像的拼接
+    ![Alt Text](/template/geo.gif "geo_distribution")
+    - [ ] 生成好友头像的拼接
     - [ ] 根据聊天内容做词云
 
   
