@@ -55,11 +55,14 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
 ---
 安装：
 ---
-1. 安装所需libs，注意请使用python 3.x版本执行
+1. 下载源代码<br/>
+   `git clone https://github.com/levoncf/wechatAIO.git`
+   <br/><br/>
+2. 在project目录下安装所需libs，注意请使用python 3.x版本执行<br/>
    `pip3 install -r requirements.txt`
-   <br/>
+   <br/><br/>
    
-2. 执行， main_CLI.py是命令行界面的主程序
+3. 执行， main_CLI.py是命令行界面的主程序<br/>
    `python3 main_CLI.py`
 ---
 Reference：https://github.com/xiaoxiaoyao/MyApp/blob/24a359c62f01777aeb36b89d8fe683cffe2c652c/jupyter_notebook/WeChat_image.ipynb
