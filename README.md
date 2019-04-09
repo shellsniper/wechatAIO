@@ -28,9 +28,9 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
     - [x] 基于好友个性签名制成的云图
     ![Alt Text](/template/wordcloud.gif "wc")
     ![Alt Text](/template/wordcloud_cn.gif "main_cli")
-          - [x] 支持图片蒙版
-          - [x] 支持英文过滤
-          - [x] 关键词模式
+      * 支持图片蒙版
+      * 支持英文过滤
+      * 关键词模式
           
     - [x] 微信好友的国内外地域分布统计图
     ![Alt Text](/template/geo.gif "geo_distribution")
@@ -43,7 +43,7 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
     - [x] 监听好友信息，包括文字，语音，视频，图片，分享链接，名片和地图
     - [x] 监听群消息，包括文字，语音，视频，图片，分享链接
     - [x] 监听撤回信息，并发送至 文件管理器 和保存下来
-    - [x] 信息分别自动保存在好友和群信息文件夹内
+    - [x] 信息自动下载保存在好友和群信息文件夹内
     - [x] 多线程保持连接登录状态
     - [ ] 关键词监听
     - [ ] 媒体文件去重，设置规则管理日志和媒体文件，定时清理缓存
@@ -52,11 +52,15 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
     - [x] 一键群发消息
     - [x] 提供给指定好友或者群发信息的接口，
 
-===
-使用场景：
 ---
-1. 
-
-===
+安装：
+---
+1. 安装所需libs，注意请使用python 3.x版本执行
+   `pip3 install -r requirements.txt`
+   <br/>
+   
+2. 执行， main_CLI.py是命令行界面的主程序
+   `python3 main_CLI.py`
+---
 Reference：https://github.com/xiaoxiaoyao/MyApp/blob/24a359c62f01777aeb36b89d8fe683cffe2c652c/jupyter_notebook/WeChat_image.ipynb
 https://www.jianshu.com/p/8f432c31dec7
