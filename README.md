@@ -41,7 +41,7 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
 
   
   * **监听信息类**
-  
+  ![ALt Text](/template/login_keep.gif "login_keep")
     - [x] 监听好友信息，包括文字，语音，视频，图片，分享链接，名片和地图
     - [x] 监听群消息，包括文字，语音，视频，图片，分享链接
     - [x] 监听撤回信息，并发送至 文件管理器 和保存下来
