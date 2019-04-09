@@ -1,4 +1,5 @@
 appnope==0.1.0
+appscript==1.1.0
 asgiref==2.3.2
 asn1crypto==0.24.0
 async-timeout==3.0.0
@@ -30,6 +31,7 @@ ipython-genutils==0.2.0
 ipywidgets==7.0.5
 itchat==1.3.10
 jedi==0.11.0
+jieba==0.39
 Jinja2==2.10
 jsonschema==2.6.0
 jupyter-client==5.1.0
