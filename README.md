@@ -6,6 +6,8 @@
 Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令行交互界面，调用itchat API，提供一个扩展微信功能的框架，方便大家实践和扩展
 
 ---
+![Alt Text](/template/interface.gif "main_cli")
+
 目前支持的功能有:
   
   * **框架类**
@@ -49,7 +51,7 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
 ===
 使用场景：
 ---
-1. 我想
+1. 
 
 ===
 Reference：https://github.com/xiaoxiaoyao/MyApp/blob/24a359c62f01777aeb36b89d8fe683cffe2c652c/jupyter_notebook/WeChat_image.ipynb
