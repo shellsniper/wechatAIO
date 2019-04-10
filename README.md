@@ -61,14 +61,14 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
    `git clone https://github.com/levoncf/wechatAIO.git`
    <br/><br/>
 2. 在project目录下安装所需libs，注意请使用python 3.x版本执行<br/>
-   `pip3 install -r requirements.txt`
+   `sudo pip3 install -r requirements.txt`
    <br/><br/>
    
 3. 执行， main_CLI.py是命令行界面的主程序<br/>
    `python3 main_CLI.py`
 ---
-
 使用：
+---
   1. 执行 `python3 main_CLI.py`后 进入主界面，按？可以查看支持的功能<br/>
       1. 按 ？<command> 可以查看功能的详细使用情况， 比如 ?geo
       2. 输入`clear`可以清除输出
@@ -79,6 +79,10 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
   3. 如果想执行监听类命令，请使用`login_keep`，这将会产生独立的一个保持连接的进程，与主交互界面不会阻塞 <br/> <br/>
   4.  待续 <br/>
 ---
+
+FAQ
+---
+1. 
 
 Reference：https://github.com/xiaoxiaoyao/MyApp/blob/24a359c62f01777aeb36b89d8fe683cffe2c652c/jupyter_notebook/WeChat_image.ipynb
 https://www.jianshu.com/p/8f432c31dec7
