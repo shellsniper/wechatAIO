@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
+from colorama import init
+init()
 from colorama import Fore
 from libs.utility.prettytable import PrettyTable
 

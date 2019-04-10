@@ -2,7 +2,7 @@
 ![wechatAIO](/template/logo.png "wechatAIO")
 
 ---
-## 2019-4-11 update: macos测试通过，windows上一些python lib需要手动安装，linux上字体需要自己设置，不然中文会出现乱码
+## 2019-4-11 update: macos测试通过，windows上一些python lib需要手动安装出现的问题见FAQ，linux上字体需要自己设置，不然中文会出现乱码
 ## <del> 2019-4-10 update:正在修复不同系统上terminal的问题
 
 ---
@@ -93,7 +93,16 @@ Q: 出现 Command "python setup.py egg_info" failed with error code 1 in C:\User
 A: 解决办法参照 https://github.com/googleapis/google-cloud-python/issues/3884
    <br/><br/>
    如果是Windows系统需要有VC++ 2017 的build tools
+  
+Q: Windows OS pip install wordcloud ERROR
+A: <br/><br/>
+  Download wordcloud‑1.3.2‑cp36‑cp36m‑win_amd64.whl from http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud<br/>
 
+  <br/> Copy the file to your current working directory
+
+  <br/> Open command prompt from Tools
+
+  <br/> Python -m pip install wordcloud-1.5.0-cp37-cp37m-win32.whl
 Reference：
 ---
 

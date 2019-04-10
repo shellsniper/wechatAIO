@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 from cmd import Cmd
-from colorama import Fore, Back
+#from pathlib import Path
+from colorama import init
+from colorama import Fore, Back, Style
 import signal
 import json
 import signal
@@ -16,12 +18,16 @@ import textwrap
 import importlib
 import itchat
 from libs.utility.banner import *
+from libs.utility.plat_definer import *
 
-PROMPT = Fore.LIGHTMAGENTA_EX + "(wechatAIO)" + Fore.RESET
-
+PROMPT = Fore.MAGENTA + '(wechatAIO)' + Style.RESET_ALL
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 class CLI(Cmd):
     #init
+    init()
+    #PROMPT = Fore.MAGENTA + '(wechatAIO)' + Style.RESET_ALL
+
     prompt = PROMPT + '> >_< > '
     intro = the_intro()
     helper = the_helper()
@@ -31,18 +37,61 @@ class CLI(Cmd):
     # Inti and Communication commands
     ###########################################################
     def do_login_keep(self, input):
-        try:
-            subprocess.call(['python3', 'libs/utility/terminal.py', '--wait', 'python3', 'libs/after_login.py']) 
-            print('Message monitoring in the opening terminal...')
-            time.sleep(1)
-        except OSError as e:
-            print(e.strerror)
+        plat = Plat_define()
+        platform = plat.use_platform()
+        print("Current OS: {}".format(platform))
+        if platform == 'mac':
+            terminal_dir = 'libs/utility/terminal.py'
+            login_keep_dir = 'libs/login_keep.py'
+            try:
+                subprocess.call(['python', terminal_dir, '--wait', 'python', login_keep_dir]) 
+                print('Message monitoring in the opening terminal...')
+                time.sleep(1)
+            except OSError as e:
+                print(e.strerror)
+        elif platform == 'windows':
+            terminal_dir = DIR_PATH + '\\libs\\utility\\terminal.py'
+            login_keep_dir = DIR_PATH + '\\libs\\after_login.py'
+            print(login_keep_dir) 
+            try:
+                #subprocess.call(['python', terminal_dir, 'dir']) 
+                subprocess.call('start /wait python {}'.format(login_keep_dir), shell=True)
+                print('Message monitoring in the opening terminal...')
+                time.sleep(1)
+            except OSError as e:
+                print(e.strerror)
+        elif platform == 'linux':
+            terminal_dir = 'libs/utility/terminal.py'
+            login_keep_dir =  'libs/login_keep.py'
+            try:
+                subprocess.call(['python', terminal_dir, '--wait', 'python', login_keep_dir]) 
+                print('Message monitoring in the opening terminal...')
+                time.sleep(1)
+            except OSError as e:
+                print(e.strerror)
+        else:
+            print("Untested OS!")
+       
     def help_login_keep(self):
         print('Keeping wechat connection for further operations.')
     ###########################################################
-    def do_user_meta(self, input):
+    def do_user_meta(self, input):         
+        plat = Plat_define()
+        platform = plat.use_platform()
+        if platform == 'mac':
+            user_meta_dir = 'libs/user_meta.py'
+        elif platform == 'windows':
+            user_meta_dir = DIR_PATH + '\\libs\\user_meta.py'
+        elif platform == 'linux':
+            user_meta_dir =  'libs/user_meta.py'
+        else:
+            print("Untested OS!")
+        #user_meta_dir = Path(dir_path, "/libs/user_meta.py")
+        #user_meta_dir = dir_path + '\\libs\\user_meta.py'
+        #print(user_meta_dir)
         try:
-            subprocess.call(['python3', 'libs/user_meta.py'])
+            #subprocess.call(['python3', 'libs/user_meta.py'])
+            subprocess.call(['python', user_meta_dir])
             print('user_info.json has been successfully donwloaded!...\n')
             print(Fore.CYAN + "You can run geo, gender, wordcloud, wordcloud_cn to analyze the data..." + Fore.RESET)
         except OSError as e:
@@ -87,8 +136,18 @@ class CLI(Cmd):
     # Statistics Commands
     ###########################################################
     def do_backup(self, input):
+        plat = Plat_define()
+        platform = plat.use_platform()
+        if platform == 'mac':
+            back_up_dir = 'libs/back_up.py'
+        elif platform == 'windows':
+            back_up_dir = DIR_PATH + '\\libs\\back_up.py'
+        elif platform == 'linux':
+            back_up_dir =  'libs/back_up.py'
+        else:
+            print("Untested OS!")
         try:
-            subprocess.call(['python3', 'libs/backup.py'])
+            subprocess.call(['python', back_up_dir])
         except OSError as e:
             print(e.strerror)
 
@@ -96,8 +155,18 @@ class CLI(Cmd):
         print('backing up user_info.json to the backup folder.')
     ###########################################################
     def do_wordcloud(self, input):
+        plat = Plat_define()
+        platform = plat.use_platform()
+        if platform == 'mac':
+            wc_dir = 'libs/word_cloud.py'
+        elif platform == 'windows':
+            wc_dir = DIR_PATH + '\\libs\\word_cloud.py'
+        elif platform == 'linux':
+            wc_dir =  'libs/word_cloud.py'
+        else:
+            print("Untested OS!")
         try:
-            subprocess.call(['python3', 'libs/word_cloud.py'])
+            subprocess.call(['python', wc_dir])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -106,8 +175,18 @@ class CLI(Cmd):
         print('generate a word cloud figure based on your friends signatures.')
     ###########################################################
     def do_wordcloud_cn(self, input):
+        plat = Plat_define()
+        platform = plat.use_platform()
+        if platform == 'mac':
+            wccn_dir = 'libs/word_cloud_cn.py'
+        elif platform == 'windows':
+            wccn_dir = DIR_PATH + '\\libs\\word_cloud_cn.py'
+        elif platform == 'linux':
+            wccn_dir =  'libs/word_cloud_cn.py'
+        else:
+            print("Untested OS!")
         try:
-            subprocess.call(['python3', 'libs/word_cloud_cn.py'])
+            subprocess.call(['python', wccn_dir])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -116,8 +195,18 @@ class CLI(Cmd):
         print('generate a word cloud figure based on your friends signatures. 中文关键词模式')
     ###########################################################
     def do_gender(self, input):
+        plat = Plat_define()
+        platform = plat.use_platform()
+        if platform == 'mac':
+            gender_dir = 'libs/gender_analysis.py'
+        elif platform == 'windows':
+            gender_dir = DIR_PATH + '\\libs\\gender_analysis.py'
+        elif platform == 'linux':
+            gender_dir =  'libs/gender_analysis.py'
+        else:
+            print("Untested OS!")
         try:
-            subprocess.call(['python3', 'libs/gender_analysis.py'])
+            subprocess.call(['python', gender_dir])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -126,8 +215,18 @@ class CLI(Cmd):
         print('generate gender distribution charts.')
     ###########################################################
     def do_geo(self, input):
+        plat = Plat_define()
+        platform = plat.use_platform()
+        if platform == 'mac':
+            geo_dir = 'libs/geo_chart.py'
+        elif platform == 'windows':
+            geo_dir = DIR_PATH + '\\libs\\geo_chart.py'
+        elif platform == 'linux':
+            geo_dir =  'libs/geo_chart.py'
+        else:
+            print("Untested OS!")
         try:
-            subprocess.call(['python3', 'libs/geo_chart.py'])
+            subprocess.call(['python', geo_dir])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -218,6 +317,7 @@ class CLI(Cmd):
 
 # main
 if __name__ == '__main__':
+    init()
     the_banner()
     original_sigint = signal.getsignal(signal.SIGINT)
     cli = CLI()

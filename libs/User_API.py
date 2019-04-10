@@ -23,7 +23,7 @@ platform = plat.use_platform()
 if platform == 'mac':
     font = FontProperties(fname='/System/Library/Fonts/PingFang.ttc',size = 10)
 elif platform == 'windows':
-    font = FontProperties(fname='C:/Windows/Fonts/simsun.ttf', size = 10)  
+    font = FontProperties(fname='C:\Windows\Fonts\simsun.ttf', size = 10)  
 elif platform == 'linux':
     font = "none"
 else:
