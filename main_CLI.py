@@ -17,7 +17,7 @@ import importlib
 import itchat
 from libs.utility.banner import *
 
-PROMPT = Fore.LIGHTMAGENTA_EX + "wechatAIO" + Fore.RESET
+PROMPT = Fore.LIGHTMAGENTA_EX + "(wechatAIO)" + Fore.RESET
 
 
 class CLI(Cmd):
@@ -158,6 +158,19 @@ class CLI(Cmd):
             print(f)
     def help_ls(self):
         print('Same as ls, list all files in current directory.')
+    #=========================================================
+    def do_dir_tree(self, input):
+        startpath = str(os.path.dirname(os.path.abspath(__file__)))
+        for root, dirs, files in os.walk(startpath):
+            level = root.replace(startpath, '').count(os.sep)
+            indent = ' ' * 4 * (level)
+            print('{}{}/'.format(indent, os.path.basename(root)))
+            subindent = ' ' * 4 * (level + 1)
+            for f in files:
+                print('{}{}'.format(subindent, f))
+    def help_dir_tree(self):
+        print('show project directory/content tree.')
+        
     #---------------------------------------------------------
     # can add more utility command below
     #---------------------------------------------------------
