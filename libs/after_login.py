@@ -18,11 +18,11 @@ msg_group = {}
 
 # 文件临时存储文件夾
 #friend_data_dir = os.path.join(os.getcwd(), '/data/friend/')
-root_dir = str(os.path.dirname(__file__)[0:-5])
-friend_data_dir = '{}{}'.format(root_dir, '/data/friend')
-#print(friend_data_dir)
+ROOT_DIR = str(os.path.dirname(os.path.abspath(__file__)))
+FRIEND_DIR = ROOT_DIR + '/../data/friend'
+print(FRIEND_DIR)
 #group_data_dir = os.path.join(os.getcwd(), '/data/group/')
-group_data_dir = '{}{}'.format(root_dir, '/data/group')
+GROUP_DIR = ROOT_DIR + '/../data/group'
 
 # prettytable
 def table(field, row):
@@ -65,9 +65,9 @@ def handle_friend_msg(msg):
                     or msg['Type'] == 'Picture' \
                     or msg['Type'] == 'Recording':
                 msg_content = msg['FileName']  # 内容就是他们的文件名
-                msg['Text'](friend_data_dir + str(msg_content))  # 下载文件
+                msg['Text'](FRIEND_DIR + str(msg_content))  # 下载文件
                 field = ['DateTime', 'From', 'Content', 'Type', 'Dir']
-                row = [str(msg_time_rec), msg_from, msg_content, msg['Type'], friend_data_dir]
+                row = [str(msg_time_rec), msg_from, msg_content, msg['Type'], FRIEND_DIR]
                 table(field, row)
                 #print("在{}: {}发送了: {}, 类型是{}, 已下载到{}目录下 ".format(str(msg_time_rec), msg_from, msg_content, msg['Type'], friend_data_dir))
                 # print msg_content
@@ -136,9 +136,9 @@ def handle_group_msg(msg):
                     or msg['Type'] == 'Picture' \
                     or msg['Type'] == 'Recording':
                 msg_content = msg['FileName']  # 内容就是他们的文件名
-                msg['Text'](group_data_dir + str(msg_content))  # 下载文件
+                msg['Text'](GROUP_DIR + str(msg_content))  # 下载文件
                 field = ['DateTime', 'From', 'Content', 'Type', "Dir"]
-                row = [str(msg_time_rec), msg_from, msg_content, msg['Type'], group_data_dir]
+                row = [str(msg_time_rec), msg_from, msg_content, msg['Type'], GROUP_DIR]
                 table(field, row)
                 #print("在{}: {}发送了: {}, 类型是{}, 已下载到{}目录下 ".format(str(msg_time_rec), msg_from, msg_content, msg['Type'], group_data_dir))
                 # print msg_content
@@ -186,7 +186,13 @@ def revoke_msg(msg):
                                  toUserName="filehelper") 
 ''' 
 if __name__ == '__main__':
-   
+    #################################
+    #print(FRIEND_DIR)
+    if not os.path.exists(FRIEND_DIR):
+        os.mkdir(FRIEND_DIR)
+    if not os.path.exists(GROUP_DIR):
+        os.mkdir(GROUP_DIR)
+    #################################
     itchat.auto_login(hotReload=True, exitCallback=after_logout)
     #Thread to keep connection
     timer1 = threading.Timer(60*6,keep_alive)
@@ -198,7 +204,7 @@ if __name__ == '__main__':
     friends = itchat.get_friends(update=True)[1:]
     #friends = ['1', '2', '3']
     user_meta = Login()
-    user_info_dir = "{}/user_info.json".format(root_dir)
+    user_info_dir = "{}/user_info.json".format(ROOT_DIR)
     try:   
         print("用户信息已保存在:{} 目录下".format(user_info_dir))
         f = open(user_info_dir, 'r')
@@ -219,11 +225,6 @@ if __name__ == '__main__':
                 f.write('\n')
             f.close()
 
-    #################################
-    if not os.path.exists(friend_data_dir):
-        os.mkdir(friend_data_dir)
-    if not os.path.exists(group_data_dir):
-        os.mkdir(group_data_dir)
-
+   
     time.sleep(2)
     itchat.run()

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from User_API import *
 
 if __name__ == "__main__":

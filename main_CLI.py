@@ -87,7 +87,7 @@ class CLI(Cmd):
     ###########################################################
     def do_backup(self, input):
         try:
-            subprocess.call(['python', 'libs/backup.py'])
+            subprocess.call(['python3', 'libs/backup.py'])
         except OSError as e:
             print(e.strerror)
 
@@ -96,7 +96,7 @@ class CLI(Cmd):
     ###########################################################
     def do_wordcloud(self, input):
         try:
-            subprocess.call(['python', 'libs/word_cloud.py'])
+            subprocess.call(['python3', 'libs/word_cloud.py'])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -106,7 +106,7 @@ class CLI(Cmd):
     ###########################################################
     def do_wordcloud_cn(self, input):
         try:
-            subprocess.call(['python', 'libs/word_cloud_cn.py'])
+            subprocess.call(['python3', 'libs/word_cloud_cn.py'])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -116,7 +116,7 @@ class CLI(Cmd):
     ###########################################################
     def do_gender(self, input):
         try:
-            subprocess.call(['python', 'libs/gender_analysis.py'])
+            subprocess.call(['python3', 'libs/gender_analysis.py'])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
@@ -126,7 +126,7 @@ class CLI(Cmd):
     ###########################################################
     def do_geo(self, input):
         try:
-            subprocess.call(['python', 'libs/geo_chart.py'])
+            subprocess.call(['python3', 'libs/geo_chart.py'])
             print('checking the opening window, back after closing')
         except OSError as e:
             print(e.strerror)
