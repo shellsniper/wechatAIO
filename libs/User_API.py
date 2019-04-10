@@ -17,6 +17,7 @@ from wordcloud import STOPWORDS, ImageColorGenerator, WordCloud
 import PIL.Image as Image
 import numpy as np
 
+root_dir = str(os.path.dirname(os.path.abspath(__file__)))
 plat = Plat_define()
 platform = plat.use_platform()
 if platform == 'mac':
@@ -27,8 +28,7 @@ elif platform == 'linux':
     font = "none"
 else:
     pass
-root_dir = str(os.path.dirname(__file__)[0:-5])
-
+#font = root_dir + "/../font/"
 class Login:
     def write_to_file(self, user_dict):
         json_info = json.dumps(user_dict)
@@ -126,7 +126,8 @@ class User_API:
     
     #generate wordcloud no filter
     def word_cloud(self):
-        masking = np.array(Image.open("{}{}".format(root_dir, "/template/num.jpg")))
+        masking = np.array(Image.open("{}{}".format(root_dir, "/../template/num.jpg")))
+        #font_type_1 = ImageFont.truetype(fm.findfont(fm.FontProperties(family=combo.get())),18)
         _, word = self.signature_proc()
         word_proc = str(word)
         #print(word_proc)
@@ -151,12 +152,12 @@ class User_API:
         plt.imshow(myword)
         plt.axis('off')
         plt.show()
-        wc.to_file('{}/signature.png'.format(root_dir))
+        wc.to_file('{}/../signature.png'.format(root_dir))
         print("signature.png has been stored at root dir...")
 
     #generate wordcloud filter EN, keep CN
     def word_cloud_cn(self):
-        masking = np.array(Image.open("{}{}".format(root_dir, "/template/num.jpg")))
+        masking = np.array(Image.open("{}{}".format(root_dir, "/../template/num.jpg")))
         _, word = self.signature_proc()
         word_proc = str(word)
 
@@ -187,7 +188,7 @@ class User_API:
         plt.imshow(myword)
         plt.axis('off')
         plt.show()
-        wc.to_file('{}/signature_cn.png'.format(root_dir))
+        wc.to_file('{}/../signature_cn.png'.format(root_dir))
         print("signature_cn.png has been stored at root dir...")
 
     #function to analyze friends' geo locaitons
@@ -239,14 +240,14 @@ class User_API:
         plt.barh(range(len(china_dic)), list(china_dic.values()))
         plt.yticks(range(len(china_dic)), list(china_dic.keys()), FontProperties = font)
         plt.xlabel('numbers')
-        plt.title("共: {}人，中国国内: {}人 / 未知:{}人".format(total_ctr, china_ctr, undefined), FontProperties = font)
+        plt.title("Total: {}，In China: {} / Undefined: {}".format(total_ctr, china_ctr, undefined), FontProperties = font)
 
         #pie chart
         plt.subplot(1,2,2)
         plt.barh(range(len(oversea_dic)), list(oversea_dic.values()))
         plt.yticks(range(len(oversea_dic)), list(oversea_dic.keys()), FontProperties = font)
         plt.xlabel('numbers')
-        plt.title("共: {}人， 海外: {}人 / 未知:{}人".format(total_ctr, oversea_ctr, undefined),FontProperties = font)
+        plt.title("Total: {}， Oversea: {} / Undefined: {}".format(total_ctr, oversea_ctr, undefined),FontProperties = font)
         plt.show()
 
     def if_contain_cn(self, strs):
