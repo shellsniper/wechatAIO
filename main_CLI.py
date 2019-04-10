@@ -32,7 +32,7 @@ class CLI(Cmd):
     ###########################################################
     def do_login_keep(self, input):
         try:
-            subprocess.call(['python3', 'libs/terminal.py']) 
+            subprocess.call(['python3', 'libs/terminal.py', '--wait', 'python3', 'libs/after_login.py']) 
             print('Message monitoring in the opening terminal...')
             time.sleep(1)
         except OSError as e:
@@ -57,7 +57,7 @@ class CLI(Cmd):
         itchat.send(text, toUserName = to_user)
         print('sent: {} to {}'.format(text, to_user))
     def help_send(self):
-        print('login wechat to retrieving data.')
+        print('send message to User or Group.')
     ###########################################################
     def do_list_friends(self, input):
         itchat.auto_login(hotReload=True)
@@ -71,7 +71,7 @@ class CLI(Cmd):
             print(user_name)
         
     def help_list_friends(self):
-        print('login wechat to retrieving data.')    
+        print('List all friends info.')    
     ###########################################################
     def do_search_friends(self, inputs):
         #print(inputs2)
@@ -79,7 +79,7 @@ class CLI(Cmd):
         friend = itchat.search_friends(inputs)
         print(friend)
     def help_search_friends(self):
-        print('login wechat to retrieving data.') 
+        print('search particular user.') 
     ###########################################################
 
     ###########################################################
@@ -112,7 +112,7 @@ class CLI(Cmd):
             print(e.strerror)
 
     def help_wordcloud_cn(self):
-        print('generate a word cloud figure based on your friends signatures.')
+        print('generate a word cloud figure based on your friends signatures. 中文关键词模式')
     ###########################################################
     def do_gender(self, input):
         try:

@@ -2,8 +2,8 @@
 ![wechatAIO](/template/logo.png "wechatAIO")
 
 ---
-
-##update:正在修复不同系统上terminal的问题
+## 2019-4-11 update:正在测试不同系统
+## <del> 2019-4-10 update:正在修复不同系统上terminal的问题
 
 ---
 
