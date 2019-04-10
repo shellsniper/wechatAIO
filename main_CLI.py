@@ -15,9 +15,9 @@ import shlex
 import textwrap
 import importlib
 import itchat
-from banner import *
+from libs.utility.banner import *
 
-PROMPT = Fore.GREEN + "wechatAIO" + Fore.RESET
+PROMPT = Fore.LIGHTMAGENTA_EX + "wechatAIO" + Fore.RESET
 
 
 class CLI(Cmd):
@@ -32,7 +32,7 @@ class CLI(Cmd):
     ###########################################################
     def do_login_keep(self, input):
         try:
-            subprocess.call(['python3', 'libs/terminal.py', '--wait', 'python3', 'libs/after_login.py']) 
+            subprocess.call(['python3', 'libs/utility/terminal.py', '--wait', 'python3', 'libs/after_login.py']) 
             print('Message monitoring in the opening terminal...')
             time.sleep(1)
         except OSError as e:
@@ -43,7 +43,8 @@ class CLI(Cmd):
     def do_user_meta(self, input):
         try:
             subprocess.call(['python3', 'libs/user_meta.py'])
-            print('Processing...')
+            print('user_info.json has been successfully donwloaded!...\n')
+            print(Fore.CYAN + "You can run geo, gender, wordcloud, wordcloud_cn to analyze the data..." + Fore.RESET)
         except OSError as e:
             print(e.strerror)
     def help_user_meta(self):

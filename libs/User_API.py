@@ -12,7 +12,7 @@ import itchat
 import jieba
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
-from plat_definer import *
+from utility.plat_definer import *
 from wordcloud import STOPWORDS, ImageColorGenerator, WordCloud
 import PIL.Image as Image
 import numpy as np

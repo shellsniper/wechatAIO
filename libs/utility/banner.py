@@ -1,31 +1,40 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 from colorama import Fore
+from libs.utility.prettytable import PrettyTable
 
-
+# prettytable
+def table(field, row):
+    x = PrettyTable(header_style='upper', padding_width=0)
+    x.field_names = field
+    x.add_row(row)
+    return x
+    
 def the_banner():
-    banner_logo = Fore.RED + """
+    banner_logo = Fore.LIGHTGREEN_EX + """
 ==================================================================\n
-                    _           _            _____ ____  
-                   | |         | |     /\   |_   _/ __ \ 
- __      _____  ___| |__   __ _| |_   /  \    | || |  | |
- \ \ /\ / / _ \/ __| '_ \ / _` | __| / /\ \   | || |  | |
-  \ V  V /  __/ (__| | | | (_| | |_ / ____ \ _| || |__| |
-   \_/\_/ \___|\___|_| |_|\__,_|\__/_/    \_\_____\____/ 
+                      _           _            _____ ____  
+                     | |         | |     /\   |_   _/ __ \ 
+   __      _____  ___| |__   __ _| |_   /  \    | || |  | |
+   \ \ /\ / / _ \/ __| '_ \ / _` | __| / /\ \   | || |  | |
+    \ V  V /  __/ (__| | | | (_| | |_ / ____ \ _| || |__| |
+     \_/\_/ \___|\___|_| |_|\__,_|\__/_/    \_\_____\____/ 
    
                                         ver: v1.0
                                         git: github.com/levoncf/
                                         gmail: levoncf@gmail.com
                                         blog: chenfengnie.com
 ==================================================================\n
-"""
+""" + Fore.LIGHTGREEN_EX
     print(banner_logo)
 
 def the_intro():
     intro = Fore.CYAN + "\
     Welcome!\n\
-    If it is your first time, please run 'user_meta' or 'login_keep' first to retrieving data from your Wechat \n\n\
-        Hit ?/help to check all commands... " + Fore.RESET
+    If it is your first time, please run 'user_meta' or 'login_keep' first \nto retrieving data from your Wechat,\n\n\
+    Note you will be asked to scan the QR Code by your wechat app, it is just like you login the wechat web app\n\
+    \nand all DATA will be stored ON YOUR SIDE ONLY.\n\n\
+    Hit ?/help to check all commands...\n\n" + Fore.RESET
     return intro
 
 def the_helper():

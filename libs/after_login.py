@@ -9,7 +9,7 @@ import time
 import threading
 import itchat
 from itchat.content import *
-from prettytable import PrettyTable
+from utility.prettytable import PrettyTable
 from User_API import *
 
 #字典缓存
