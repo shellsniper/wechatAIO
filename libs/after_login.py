@@ -204,7 +204,7 @@ if __name__ == '__main__':
     friends = itchat.get_friends(update=True)[1:]
     #friends = ['1', '2', '3']
     user_meta = Login()
-    user_info_dir = "{}/user_info.json".format(ROOT_DIR)
+    user_info_dir = "{}/../user_info.json".format(ROOT_DIR)
     try:   
         print("用户信息已保存在:{} 目录下".format(user_info_dir))
         f = open(user_info_dir, 'r')

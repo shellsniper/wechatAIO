@@ -22,7 +22,7 @@ PROMPT = Fore.GREEN + "wechatAIO" + Fore.RESET
 
 class CLI(Cmd):
     #init
-    prompt = PROMPT + '> '
+    prompt = PROMPT + '> >_< > '
     intro = the_intro()
     helper = the_helper()
     #print(intro)
@@ -150,7 +150,13 @@ class CLI(Cmd):
         print(chr(27) + "[2J")
     def help_clear(self):
         print('clear all outputs.')
-
+    #=========================================================
+    def do_ls(self, input):
+        files = [f for f in os.listdir('.') if os.path.isfile(f)]
+        for f in files:
+            print(f)
+    def help_ls(self):
+        print('Same as ls, list all files in current directory.')
     #---------------------------------------------------------
     # can add more utility command below
     #---------------------------------------------------------
