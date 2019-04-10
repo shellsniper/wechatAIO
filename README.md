@@ -80,7 +80,7 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
       2. 输入`clear`可以清除输出
       3. 输入`tab`键可以自动补全命令
    <br/>
-  2. 如果只是想生成统计类的图表，只需输入 `user_meta`，不会占用微信web API的连接 <br/> <br/>
+  2. 如果只是想生成统计类的图表，只需输入 `user_meta`, 获取到用户信息后就自动登出，不会占用微信web API的连接 <br/> <br/>
   
   3. 如果想执行监听类命令，请使用`login_keep`，这将会产生独立的一个保持连接的进程，与主交互界面不会阻塞 <br/> <br/>
   4.  待续 <br/>
@@ -88,7 +88,14 @@ Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令�
 
 FAQ
 ---
-1. 
+Q: 出现 Command "python setup.py egg_info" failed with error code 1 in C:\Users\CTA\AppData\Local\Temp\pip-install-sxo0fmjy\matplotlib\的问题<br/><br/>
 
-Reference：https://github.com/xiaoxiaoyao/MyApp/blob/24a359c62f01777aeb36b89d8fe683cffe2c652c/jupyter_notebook/WeChat_image.ipynb
+A: 解决办法参照 https://github.com/googleapis/google-cloud-python/issues/3884
+   <br/><br/>
+   如果是Windows系统需要有VC++ 2017 的build tools
+
+Reference：
+---
+
+https://github.com/xiaoxiaoyao/MyApp/blob/24a359c62f01777aeb36b89d8fe683cffe2c652c/jupyter_notebook/WeChat_image.ipynb
 https://www.jianshu.com/p/8f432c31dec7
