@@ -2,7 +2,7 @@
 ![wechatAIO](/template/logo.png "wechatAIO")
 
 ---
-## 2019-4-11 update:正在测试不同系统
+## 2019-4-11 update: macos测试通过，windows上一些python lib需要手动安装，linux上字体需要自己设置，不然中文会出现乱码
 ## <del> 2019-4-10 update:正在修复不同系统上terminal的问题
 
 ---
