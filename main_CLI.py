@@ -11,6 +11,9 @@ import subprocess
 import time
 import os
 import sys
+root_dir = str(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(root_dir)
+#print(sys.path)
 import platform
 import atexit
 import shlex
@@ -42,9 +45,9 @@ class CLI(Cmd):
         print("Current OS: {}".format(platform))
         if platform == 'mac':
             terminal_dir = 'libs/utility/terminal.py'
-            login_keep_dir = 'libs/login_keep.py'
+            login_keep_dir = 'libs/after_login.py'
             try:
-                subprocess.call(['python', terminal_dir, '--wait', 'python', login_keep_dir]) 
+                subprocess.call(['python3', terminal_dir, '--wait', 'python3', login_keep_dir]) 
                 print('Message monitoring in the opening terminal...')
                 time.sleep(1)
             except OSError as e:
@@ -55,16 +58,16 @@ class CLI(Cmd):
             print(login_keep_dir) 
             try:
                 #subprocess.call(['python', terminal_dir, 'dir']) 
-                subprocess.call('start /wait python {}'.format(login_keep_dir), shell=True)
+                subprocess.call('start /wait python3 {}'.format(login_keep_dir), shell=True)
                 print('Message monitoring in the opening terminal...')
                 time.sleep(1)
             except OSError as e:
                 print(e.strerror)
         elif platform == 'linux':
             terminal_dir = 'libs/utility/terminal.py'
-            login_keep_dir =  'libs/login_keep.py'
+            login_keep_dir =  'libs/after_login.py'
             try:
-                subprocess.call(['python', terminal_dir, '--wait', 'python', login_keep_dir]) 
+                subprocess.call(['python3', terminal_dir, '--wait', 'python3', login_keep_dir]) 
                 print('Message monitoring in the opening terminal...')
                 time.sleep(1)
             except OSError as e:
@@ -91,7 +94,7 @@ class CLI(Cmd):
         #print(user_meta_dir)
         try:
             #subprocess.call(['python3', 'libs/user_meta.py'])
-            subprocess.call(['python', user_meta_dir])
+            subprocess.call(['python3', user_meta_dir])
             print('user_info.json has been successfully donwloaded!...\n')
             print(Fore.CYAN + "You can run geo, gender, wordcloud, wordcloud_cn to analyze the data..." + Fore.RESET)
         except OSError as e:

@@ -6,6 +6,9 @@ import os
 import re
 import shutil
 import sys
+root_dir = str(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(root_dir)
+#print(sys.path)
 import time
 
 import itchat
@@ -17,7 +20,7 @@ from wordcloud import STOPWORDS, ImageColorGenerator, WordCloud
 import PIL.Image as Image
 import numpy as np
 
-root_dir = str(os.path.dirname(os.path.abspath(__file__)))
+
 plat = Plat_define()
 platform = plat.use_platform()
 if platform == 'mac':

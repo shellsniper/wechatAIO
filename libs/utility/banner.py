@@ -3,15 +3,15 @@
 from colorama import init
 init()
 from colorama import Fore
-from libs.utility.prettytable import PrettyTable
-
+#from libs.utility.prettytable import PrettyTable
+'''
 # prettytable
 def table(field, row):
     x = PrettyTable(header_style='upper', padding_width=0)
     x.field_names = field
     x.add_row(row)
     return x
-    
+'''
 def the_banner():
     banner_logo = Fore.LIGHTGREEN_EX + """
 ==================================================================\n

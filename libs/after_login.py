@@ -5,11 +5,14 @@ import os
 #os.chdir(os.path.dirname(__file__))
 import re
 import sys
+#root_dir = str(os.path.dirname(os.path.abspath(__file__))
+#sys.path.append(root_dir)
+#print(sys.path)
 import time
 import threading
 import itchat
 from itchat.content import *
-from utility.prettytable import PrettyTable
+from prettytable import PrettyTable
 from User_API import *
 
 #字典缓存
