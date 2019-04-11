@@ -1,18 +1,20 @@
-#!/usr/bin/env python3
+
 # coding:utf-8
 
 import os
 #os.chdir(os.path.dirname(__file__))
 import re
 import sys
+ROOT_DIR = str(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(ROOT_DIR + "/../util")
+#print(sys.path)
 #root_dir = str(os.path.dirname(os.path.abspath(__file__))
 #sys.path.append(root_dir)
-#print(sys.path)
 import time
 import threading
 import itchat
 from itchat.content import *
-from prettytable import PrettyTable
+from __prettytable import PrettyTable
 from User_API import *
 
 #字典缓存
@@ -21,11 +23,12 @@ msg_group = {}
 
 # 文件临时存储文件夾
 #friend_data_dir = os.path.join(os.getcwd(), '/data/friend/')
-ROOT_DIR = str(os.path.dirname(os.path.abspath(__file__)))
+
 FRIEND_DIR = ROOT_DIR + '/../data/friend'
-print(FRIEND_DIR)
+#print(FRIEND_DIR)
 #group_data_dir = os.path.join(os.getcwd(), '/data/group/')
 GROUP_DIR = ROOT_DIR + '/../data/group'
+
 
 # prettytable
 def table(field, row):

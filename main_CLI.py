@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding:utf-8 -*-
 from cmd import Cmd
 #from pathlib import Path
@@ -11,8 +11,8 @@ import subprocess
 import time
 import os
 import sys
-root_dir = str(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(root_dir)
+#root_dir = str(os.path.dirname(os.path.abspath(__file__)))
+#sys.path.append(root_dir)
 #print(sys.path)
 import platform
 import atexit
@@ -20,8 +20,9 @@ import shlex
 import textwrap
 import importlib
 import itchat
-from libs.utility.banner import *
-from libs.utility.plat_definer import *
+from util.__banner import *
+from util.__Plat_define import *
+from libs.User_API import *
 
 PROMPT = Fore.MAGENTA + '(wechatAIO)' + Style.RESET_ALL
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -44,7 +45,7 @@ class CLI(Cmd):
         platform = plat.use_platform()
         print("Current OS: {}".format(platform))
         if platform == 'mac':
-            terminal_dir = 'libs/utility/terminal.py'
+            terminal_dir = 'util/__terminal.py'
             login_keep_dir = 'libs/after_login.py'
             try:
                 subprocess.call(['python3', terminal_dir, '--wait', 'python3', login_keep_dir]) 
@@ -53,7 +54,7 @@ class CLI(Cmd):
             except OSError as e:
                 print(e.strerror)
         elif platform == 'windows':
-            terminal_dir = DIR_PATH + '\\libs\\utility\\terminal.py'
+            terminal_dir = DIR_PATH + '\\util\\__terminal.py'
             login_keep_dir = DIR_PATH + '\\libs\\after_login.py'
             print(login_keep_dir) 
             try:
@@ -64,7 +65,7 @@ class CLI(Cmd):
             except OSError as e:
                 print(e.strerror)
         elif platform == 'linux':
-            terminal_dir = 'libs/utility/terminal.py'
+            terminal_dir = 'util/__terminal.py'
             login_keep_dir =  'libs/after_login.py'
             try:
                 subprocess.call(['python3', terminal_dir, '--wait', 'python3', login_keep_dir]) 
@@ -79,26 +80,12 @@ class CLI(Cmd):
         print('Keeping wechat connection for further operations.')
     ###########################################################
     def do_user_meta(self, input):         
-        plat = Plat_define()
-        platform = plat.use_platform()
-        if platform == 'mac':
-            user_meta_dir = 'libs/user_meta.py'
-        elif platform == 'windows':
-            user_meta_dir = DIR_PATH + '\\libs\\user_meta.py'
-        elif platform == 'linux':
-            user_meta_dir =  'libs/user_meta.py'
-        else:
-            print("Untested OS!")
-        #user_meta_dir = Path(dir_path, "/libs/user_meta.py")
-        #user_meta_dir = dir_path + '\\libs\\user_meta.py'
-        #print(user_meta_dir)
         try:
-            #subprocess.call(['python3', 'libs/user_meta.py'])
-            subprocess.call(['python3', user_meta_dir])
-            print('user_info.json has been successfully donwloaded!...\n')
-            print(Fore.CYAN + "You can run geo, gender, wordcloud, wordcloud_cn to analyze the data..." + Fore.RESET)
-        except OSError as e:
-            print(e.strerror)
+            login = Login()
+            login.get_user_info()
+        except:
+            print("retreving user_info failed!")
+            
     def help_user_meta(self):
         print('login wechat to retrieving data.')
     ###########################################################
@@ -139,100 +126,43 @@ class CLI(Cmd):
     # Statistics Commands
     ###########################################################
     def do_backup(self, input):
-        plat = Plat_define()
-        platform = plat.use_platform()
-        if platform == 'mac':
-            back_up_dir = 'libs/back_up.py'
-        elif platform == 'windows':
-            back_up_dir = DIR_PATH + '\\libs\\back_up.py'
-        elif platform == 'linux':
-            back_up_dir =  'libs/back_up.py'
-        else:
-            print("Untested OS!")
         try:
-            subprocess.call(['python', back_up_dir])
-        except OSError as e:
-            print(e.strerror)
-
+            user_info = User_API()
+            user_info.backup()
+        except:
+            print("backup failed!!")
     def help_backup(self):
         print('backing up user_info.json to the backup folder.')
     ###########################################################
     def do_wordcloud(self, input):
-        plat = Plat_define()
-        platform = plat.use_platform()
-        if platform == 'mac':
-            wc_dir = 'libs/word_cloud.py'
-        elif platform == 'windows':
-            wc_dir = DIR_PATH + '\\libs\\word_cloud.py'
-        elif platform == 'linux':
-            wc_dir =  'libs/word_cloud.py'
-        else:
-            print("Untested OS!")
-        try:
-            subprocess.call(['python', wc_dir])
-            print('checking the opening window, back after closing')
-        except OSError as e:
-            print(e.strerror)
+        user_info = User_API()
+        user_info.word_cloud()
 
     def help_wordcloud(self):
         print('generate a word cloud figure based on your friends signatures.')
     ###########################################################
     def do_wordcloud_cn(self, input):
-        plat = Plat_define()
-        platform = plat.use_platform()
-        if platform == 'mac':
-            wccn_dir = 'libs/word_cloud_cn.py'
-        elif platform == 'windows':
-            wccn_dir = DIR_PATH + '\\libs\\word_cloud_cn.py'
-        elif platform == 'linux':
-            wccn_dir =  'libs/word_cloud_cn.py'
-        else:
-            print("Untested OS!")
         try:
-            subprocess.call(['python', wccn_dir])
+            user_info = User_API()
+            user_info.word_cloud_cn()
             print('checking the opening window, back after closing')
         except OSError as e:
-            print(e.strerror)
-
+            pass
+        except:
+            print("generate wordcloud figure failed!!")
     def help_wordcloud_cn(self):
         print('generate a word cloud figure based on your friends signatures. 中文关键词模式')
     ###########################################################
     def do_gender(self, input):
-        plat = Plat_define()
-        platform = plat.use_platform()
-        if platform == 'mac':
-            gender_dir = 'libs/gender_analysis.py'
-        elif platform == 'windows':
-            gender_dir = DIR_PATH + '\\libs\\gender_analysis.py'
-        elif platform == 'linux':
-            gender_dir =  'libs/gender_analysis.py'
-        else:
-            print("Untested OS!")
-        try:
-            subprocess.call(['python', gender_dir])
-            print('checking the opening window, back after closing')
-        except OSError as e:
-            print(e.strerror)
+        user_info = User_API()
+        user_info.gender_chart()
 
     def help_gender(self):
         print('generate gender distribution charts.')
     ###########################################################
     def do_geo(self, input):
-        plat = Plat_define()
-        platform = plat.use_platform()
-        if platform == 'mac':
-            geo_dir = 'libs/geo_chart.py'
-        elif platform == 'windows':
-            geo_dir = DIR_PATH + '\\libs\\geo_chart.py'
-        elif platform == 'linux':
-            geo_dir =  'libs/geo_chart.py'
-        else:
-            print("Untested OS!")
-        try:
-            subprocess.call(['python', geo_dir])
-            print('checking the opening window, back after closing')
-        except OSError as e:
-            print(e.strerror)
+        user_info = User_API()
+        user_info.state_chart()
 
     def help_geo(self):
         print('generate location distribution charts.') 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 #coding:utf-8
 import datetime
 import json
@@ -7,19 +7,20 @@ import re
 import shutil
 import sys
 root_dir = str(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(root_dir)
+sys.path.append(root_dir + "/../util")
+#sys.path.append("/Desktop/wechatAIO/utils/_Plat_define.py")
+from __Plat_define import *
 #print(sys.path)
 import time
-
+from colorama import init
+from colorama import Fore, Back, Style
 import itchat
 import jieba
 import matplotlib.pyplot as plt
 from matplotlib.font_manager import FontProperties
-from utility.plat_definer import *
 from wordcloud import STOPWORDS, ImageColorGenerator, WordCloud
 import PIL.Image as Image
 import numpy as np
-
 
 plat = Plat_define()
 platform = plat.use_platform()
@@ -43,7 +44,7 @@ class Login:
     def get_user_info(self):
         #itchat.auto_login(hotReload=True)
         itchat.auto_login()
-        time.sleep(2)
+        time.sleep(1)
         #排除自己
         friends = itchat.get_friends(update=True)[1:]
         try:
@@ -55,8 +56,10 @@ class Login:
             print("Retrieving Data from Wecaht... ")
             for friend in friends:
                 self.write_to_file(friend)
-        time.sleep(2)
+        time.sleep(1)
         itchat.logout()
+        print('user_info.json has been successfully donwloaded!...\n')
+        print(Fore.CYAN + "You can run geo, gender, wordcloud, wordcloud_cn to analyze the data..." + Fore.RESET)
 
     def after_login(self):
         print("Log in success!")

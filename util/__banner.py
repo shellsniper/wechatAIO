@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # encoding: utf-8
 from colorama import init
 init()
@@ -22,7 +22,7 @@ def the_banner():
     \ V  V /  __/ (__| | | | (_| | |_ / ____ \ _| || |__| |
      \_/\_/ \___|\___|_| |_|\__,_|\__/_/    \_\_____\____/ 
    
-                                        ver: v1.0
+                                        ver: v1.1
                                         git: github.com/levoncf/
                                         gmail: levoncf@gmail.com
                                         blog: chenfengnie.com
