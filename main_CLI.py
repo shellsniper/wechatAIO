@@ -93,9 +93,9 @@ class CLI(Cmd):
         text = inputs.split(' ')[0]
         to_user = inputs.split(' ')[1]
         #print(inputs.split(' ')[1])
-        itchat.auto_login(hotReload=True)
+        #itchat.auto_login(hotReload=True)
         itchat.send(text, toUserName = to_user)
-        print('sent: {} to {}'.format(text, to_user))
+        print('\nsent: {} to {}\n'.format(text, to_user))
     def help_send(self):
         print('send message to User or Group.')
     ###########################################################
