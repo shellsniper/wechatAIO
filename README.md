@@ -2,7 +2,14 @@
 ![wechatAIO](/template/logo.png "wechatAIO")
 
 ---
-## 2019-4-12 update: 第一阶段框架将继续测试，接下来会慢慢完善保持连接的功能，比如在命令行与别人聊天
+## 2019-4-13 update:
+      v1.2 Update:
+                1. Added auto_reply feature
+                2. Added chat log feature
+                3. Improve UI designs
+                4. Improve overall performance by adjusting subprocesses
+                5. fix bugs
+## <del> 2019-4-12 update: 第一阶段框架将继续测试，接下来会慢慢完善保持连接的功能，比如在命令行与别人聊天
 ## <del> 2019-4-11 update: macos测试通过，windows上一些python lib需要手动安装出现的问题见FAQ，linux上字体需要自己设置，不然中文会出现乱码
 ## <del> 2019-4-10 update:正在修复不同系统上terminal的问题
 
