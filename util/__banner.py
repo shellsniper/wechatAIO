@@ -3,15 +3,16 @@
 from colorama import init
 init()
 from colorama import Fore
+from __prettytable import PrettyTable
 #from libs.utility.prettytable import PrettyTable
-'''
+
 # prettytable
 def table(field, row):
     x = PrettyTable(header_style='upper', padding_width=0)
     x.field_names = field
     x.add_row(row)
     return x
-'''
+
 def the_banner():
     banner_logo = Fore.LIGHTGREEN_EX + """
 ==================================================================\n
@@ -22,11 +23,18 @@ def the_banner():
     \ V  V /  __/ (__| | | | (_| | |_ / ____ \ _| || |__| |
      \_/\_/ \___|\___|_| |_|\__,_|\__/_/    \_\_____\____/ 
    
-                                        ver: v1.1
+                                        ver: v1.2
                                         git: github.com/levoncf/
                                         gmail: levoncf@gmail.com
                                         blog: chenfengnie.com
 ==================================================================\n
+    v1.2 Update:\n 1. Added auto_reply feature
+                \n 2. Added chat log feature
+                \n 3. Improve UI designs
+                \n 4. Improve overall performance by adjusting subprocesses
+                \n 5. fix bugs
+==================================================================\n
+
 """ + Fore.LIGHTGREEN_EX
     print(banner_logo)
 
@@ -70,3 +78,4 @@ def the_helper():
     And you can type help or ? <command> to get detail, e.g. ?login_keep\n \
     --------------------------------------------------" + Fore.RESET
     return helper
+

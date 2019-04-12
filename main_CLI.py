@@ -99,6 +99,7 @@ class CLI(Cmd):
     def help_send(self):
         print('send message to User or Group.')
     ###########################################################
+    # 列出自己所有的好友
     def do_list_friends(self, input):
         itchat.auto_login(hotReload=True)
         
@@ -197,7 +198,7 @@ class CLI(Cmd):
             level = root.replace(startpath, '').count(os.sep)
             indent = ' ' * 4 * (level)
             print('{}{}/'.format(indent, os.path.basename(root)))
-            subindent = ' ' * 4 * (level + 1)
+            subindent = '-' * 4 * (level + 1)
             for f in files:
                 print('{}{}'.format(subindent, f))
     def help_dir_tree(self):
