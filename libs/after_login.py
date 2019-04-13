@@ -29,11 +29,10 @@ SWITCH_REPLY = 0
 SWITCH_PREFIX = 1
 # 消息前缀内容
 PREFIX_CONTENT = "[自动回复]"
-HELPER = '''
-                【功能列表】
-                1./help             显示功能列表
-                2./auto_reply       自动回复开关
-                '''
+HELPER = '''【功能列表】\n
+            1./help             显示功能列表\n
+            2./auto_reply       自动回复开关\n
+            '''
 # 回复内容字典
 REPLY_DICT = {}
 # 文件临时存储文件夾
@@ -49,7 +48,7 @@ face_bug = None
 # ------------------------------------------------------------------
 #  functions
 # ------------------------------------------------------------------
-def setup_logger(logger_name, log_file, level=logging.INFO):
+def setup_logger(logger_name, log_file, level=logging.WARNING):
     l = logging.getLogger(logger_name)
     formatter = logging.Formatter('%(asctime)s : %(message)s')
     fileHandler = logging.FileHandler(log_file, mode='w')
@@ -77,7 +76,7 @@ def keep_alive():
     text = "保持登录"
     itchat.send(text, toUserName="filehelper")
     friend_log.info("Sending text to FileHelper for Keeping Connection...")
-    print("Sending text to FileHelper for Keeping Connection...")
+    print(Fore.LIGHTYELLOW_EX + "Sending text to FileHelper for Keeping Connection..." + Fore.RESET)
     global timer1
     timer1 = threading.Timer(60*6, keep_alive)
     timer1.start()
@@ -89,16 +88,21 @@ def keep_alive():
 # itchat handlers
 #--------------------------------------------------------------------------#
 
+'''
 @itchat.msg_register([TEXT, PICTURE], isFriendChat=True, isGroupChat=False)
 def auto_reply(msg):
     #('Starting to Replay')
-    print('Starting to Replay')
-    backend_log.info('Starting AUTO_REPLY')
-    reply_content = PREFIX_CONTENT + "你好，我有空就会回复你"
+    global SWITCH_REPLY
+    global PREFIX_CONTENT
+    reply_content = PREFIX_CONTENT + "I will reply to you later..."
     if SWITCH_REPLY == 1:
-        itchat.send(reply_content, msg['FromUserName'])
+        print(Fore.LIGHTYELLOW_EX + 'Starting to Replay' + Fore.RESET)
+        backend_log.info('Starting AUTO_REPLY')
+        itchat.send(reply_content, toUserName = msg['FromUserName'])
+        msg.user.send('%s: %s' % (msg.type, msg.text))
     else:
-        pass
+        print(Fore.RED + "Auto Reply is disabled!" + Fore.RESET)
+'''
 
 @itchat.msg_register([TEXT, PICTURE, FRIENDS, CARD, MAP, SHARING, RECORDING, ATTACHMENT, VIDEO], isFriendChat=True)
 def handle_friend_msg(msg):
@@ -114,6 +118,19 @@ def handle_friend_msg(msg):
     msg_id = msg['MsgId']  # 每条信息的id
     msg_content = None  # 储存信息的内容
     msg_share_url = None  # 储存分享的链接，比如分享的文章和音乐
+    #-------------------------------------------------------------------------
+
+    #('Starting to Replay')
+    global PREFIX_CONTENT
+    reply_content = PREFIX_CONTENT + "I will reply to you later..."
+    if SWITCH_REPLY == 1:
+        print(Fore.LIGHTYELLOW_EX + 'Starting to Replay' + Fore.RESET)
+        backend_log.info('Starting AUTO_REPLY')
+        if msg['FromUserName'] is not msg['ToUserName']:
+            itchat.send(reply_content, toUserName = msg['FromUserName'])
+        #msg.user.send('%s: %s' % (msg.type, msg.text))
+    else:
+        print(Fore.RED + "Current Auto Reply is disabled!" + Fore.RESET)
 
     # print(msg['MsgId'])
     if msg['Type'] == 'Text' or msg['Type'] == 'Friends':  # 如果发送的消息是文本或者好友推荐
@@ -127,20 +144,35 @@ def handle_friend_msg(msg):
         # handle custom setting
         #===============================================================#
         if msg['ToUserName'] == 'filehelper':
-            Current_Setting = "Auto_Reply: {}\n, Switch_Prefix: {}".format(SWITCH_REPLY, SWITCH_PREFIX)
+            Current_Setting = "自动回复开关: {},\n 回复模块开关: {}".format(SWITCH_REPLY, SWITCH_PREFIX)
             args = msg_content.split(' ')
             if args[0] == '/help':
                 itchat.send(HELPER, toUserName='filehelper')
+            elif args[0] == '/setting':
+                Current_Setting =  "自动回复开关: {},\n 回复模块开关: {}".format(SWITCH_REPLY, SWITCH_PREFIX)
+                itchat.send(Current_Setting, toUserName='filehelper')
             elif args[0] == '/auto_reply':
                 if args[1] == '1':
                     SWITCH_REPLY = 1
-                    itchat.send(Current_Setting, toUserName='filehelper')
+                    #time.sleep(1)
+                    Current_Setting = "自动回复开关: {},\n 回复模块开关: {}".format(SWITCH_REPLY, SWITCH_PREFIX)
+                    if SWITCH_REPLY is not 1:
+                        itchat.send("Processing, please recheck the settings...", toUserName='filehelper')
+                    else:
+                        itchat.send(Current_Setting, toUserName='filehelper')
                 elif args[1] == '0':
                     SWITCH_REPLY = 0
-                    itchat.send(Current_Setting, toUserName='filehelper')
-                else:
+                    #time.sleep(1)
+                    Current_Setting = "自动回复开关: {},\n 回复模块开关: {}".format(SWITCH_REPLY, SWITCH_PREFIX)
+                    if SWITCH_REPLY is not 0:
+                        itchat.send("Processing, please recheck the settings...", toUserName='filehelper')
+                    else:
+                        itchat.send(Current_Setting, toUserName='filehelper')
+                elif args[1] == []:
+                    Current_Setting = "自动回复开关: {},\n 回复模块开关: {}".format(SWITCH_REPLY, SWITCH_PREFIX)
                     SWITCH_REPLY = 0
-                    itchat.send(Current_Setting, toUserName='filehelper')
+                    #time.sleep(1)
+                    itchat.send('Unknown Command', toUserName='filehelper')
         #===============================================================#
         #print("在{}: {}发送了: {}, 类型是{} ".format(str(msg_time_rec), msg_from, msg_content, msg['Type']))
         # print(msg_content)
