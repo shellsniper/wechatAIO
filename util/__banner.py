@@ -36,7 +36,7 @@ def the_banner():
                 \n 3. Improve UI designs
                 \n 4. Improve overall performance by adjusting subprocesses
                 \n 5. fix bugs
-                \n 6. Added delete and reset feature
+                \n 6. Added delete and reset feature in main_CLI
 ==================================================================\n
 
 """ + Fore.LIGHTGREEN_EX
