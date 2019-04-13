@@ -26,16 +26,17 @@ def the_banner():
     \ V  V /  __/ (__| | | | (_| | |_ / ____ \ _| || |__| |
      \_/\_/ \___|\___|_| |_|\__,_|\__/_/    \_\_____\____/ 
    
-                                        ver: v1.2
+                                        ver: v1.3
                                         git: github.com/levoncf/
                                         gmail: levoncf@gmail.com
                                         blog: chenfengnie.com
 ==================================================================\n
-    v1.2 Update:\n 1. Added auto_reply feature
+    v1.3 Update:\n 1. Added auto_reply feature
                 \n 2. Added chat log feature
                 \n 3. Improve UI designs
                 \n 4. Improve overall performance by adjusting subprocesses
                 \n 5. fix bugs
+                \n 6. Added delete and reset feature
 ==================================================================\n
 
 """ + Fore.LIGHTGREEN_EX
