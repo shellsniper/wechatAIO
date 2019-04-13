@@ -225,7 +225,7 @@ class CLI(Cmd):
             print(Fore.YELLOW + "all logs files in /log/ and all media files in /data/ has been removed!" + Fore.RESET)
         else:
             print(Fore.RED + "There is error when deleting logs and media files, please check and do it manually" + Fore.RESET)
-    def help_erase_log(self):
+    def help_erase_logs(self):
         print("deleta all logs in /log/ and temp data in /data/~ such as voice and images")
     #=========================================================
     def do_reset_all(self, input):

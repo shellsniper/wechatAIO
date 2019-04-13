@@ -76,6 +76,8 @@ def the_helper():
     ==============================================\n\n \
     4. Utility Commands:\n\
     ==============================================\n \
+    erase_logs\t\t deleting all stored data such as media files and logs\n \
+    reset_all\t\t reset to factory settings, which means remove all sensitive data for you\n \
     clear\t\t clear the output\n \
     exit or q\t\t exit the CLI\n\n \
     Type ? to list full commands\n \
