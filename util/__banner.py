@@ -37,6 +37,7 @@ def the_banner():
                 \n 4. Improve overall performance by adjusting subprocesses
                 \n 5. fix bugs
                 \n 6. Added delete and reset feature in main_CLI
+                \n 7. Now the 'ls' function will only check if important file/dir is valid
 ==================================================================\n
 
 """ + Fore.LIGHTGREEN_EX
@@ -78,6 +79,7 @@ def the_helper():
     ==============================================\n \
     erase_logs\t\t deleting all stored data such as media files and logs\n \
     reset_all\t\t reset to factory settings, which means remove all sensitive data for you\n \
+    ls\t\t check if important files/dirs are valid\n \
     clear\t\t clear the output\n \
     exit or q\t\t exit the CLI\n\n \
     Type ? to list full commands\n \

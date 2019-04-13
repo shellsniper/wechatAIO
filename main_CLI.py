@@ -188,8 +188,38 @@ class CLI(Cmd):
     #=========================================================
     def do_ls(self, input):
         files = [f for f in os.listdir('.') if os.path.isfile(f)]
-        for f in files:
-            print(f)
+        group_folder_check = 'Checked'
+        friend_folder_check = 'Checked'
+        log_folder_check = 'Checked'
+        backup_folder_check = 'Checked'
+        if 'user_info.json' in files:
+            user_info_check = 'Checked'
+        else:
+            user_info_check = 'Missing'
+        if 'itchat.pkl' in files:
+            pkl_check = 'Checked'
+        else:
+            pkl_check = 'Missing'
+        if not os.listdir('data/group/'):
+            group_folder_check = "Empty"
+        if not os.listdir('data/friend/'):
+            friend_folder_check = "Empty"
+        if not os.listdir('backup/'):
+            backup_folder_check = "Empty"
+        if not os.listdir('log/'):
+            log_folder_check = "Empty"
+        tb = PrettyTable(header_style='upper', padding_width=0)
+        tb.field_names = ['Important File/Dir', 'Status']
+        tb.add_row(['user_info.json', user_info_check])
+        tb.add_row(['itchat.pkl', pkl_check])
+        tb.add_row(['/data/group', group_folder_check])
+        tb.add_row(['/data/friend', friend_folder_check])
+        tb.add_row(['/backup', backup_folder_check])
+        tb.add_row(['/log', log_folder_check])
+        print(tb)
+        print(Fore.LIGHTMAGENTA_EX + "You can run either 'user_meta' or 'login_keep' to execute further steps,\n \
+            hit '?' to receive more instructions..."  + Fore.RESET)
+
     def help_ls(self):
         print('Same as ls, list all files in current directory.')
     #=========================================================

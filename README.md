@@ -2,6 +2,10 @@
 ![wechatAIO](/template/logo.png "wechatAIO")
 
 ---
+## Warning:
+### Now is Alpha version, there are still lots of bugs, and many feature will be come out soon. I will make an announcement when everything seems okay.
+---
+
 ## 2019-4-13 update:
       v1.3 Update:
                 1. Added auto_reply feature
@@ -15,7 +19,6 @@
 ## <del> 2019-4-10 update:正在修复不同系统上terminal的问题
 
 ---
-
 Wechat All in One(wechatAIO) 使用Python 3.x 开发，提供可扩展的命令行交互界面，调用itchat API，提供一个扩展微信功能的框架，方便大家实践和扩展
 <br/>
 欢迎大家issue问题，求star，求follow！
