@@ -3,7 +3,7 @@
 
 ---
 ## Warning:
-### Now is Alpha version, there are still lots of bugs, and many feature will be come out soon. I will make an announcement when everything seems okay.
+### Now is Alpha version, there are still lots of bugs, especially in the Windows OS, and more features will be come out soon. I will make an announcement when everything seems okay to release.
 ---
 
 ## 2019-4-13 update:
