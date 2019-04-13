@@ -14,6 +14,7 @@ import sys
 #root_dir = str(os.path.dirname(os.path.abspath(__file__)))
 #sys.path.append(root_dir)
 #print(sys.path)
+import errno
 import platform
 import atexit
 import shlex
@@ -203,10 +204,68 @@ class CLI(Cmd):
                 print('{}{}'.format(subindent, f))
     def help_dir_tree(self):
         print('show project directory/content tree.')
+    #=========================================================
+    def do_erase_logs(self, input):
+        erase_flag = 1
+        folder_list = ['data/friend', 'data/group', 'log/']
+        for folder in folder_list:
+            for the_file in os.listdir(folder):
+                file_path = os.path.join(folder, the_file)
+                try:
+                    if os.path.isfile(file_path):
+                        os.unlink(file_path)
+                    #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+                except OSError as e:
+                    if e.errno == 2:
+                        pass
+                    else:
+                        erase_flag = 0
+                        print(e)
+        if erase_flag == 1:
+            print(Fore.YELLOW + "all logs files in /log/ and all media files in /data/ has been removed!" + Fore.RESET)
+        else:
+            print(Fore.RED + "There is error when deleting logs and media files, please check and do it manually" + Fore.RESET)
+    def help_erase_log(self):
+        print("deleta all logs in /log/ and temp data in /data/~ such as voice and images")
+    #=========================================================
+    def do_reset_all(self, input):
+        reset_flag = 1
+        folder_list = ['data/friend', 'data/group', 'log/', 'backup/']
+        for folder in folder_list:
+            for the_file in os.listdir(folder):
+                file_path = os.path.join(folder, the_file)
+                try:
+                    if os.path.isfile(file_path):
+                        os.unlink(file_path)
+                    #elif os.path.isdir(file_path): shutil.rmtree(file_path)
+                except OSError as err:
+                    if err.errno == 2:
+                        pass
+                    else:
+                        reset_flag = 0
+                        print(err)
+        file_list = ['signature.png', 'signature_cn.png', 'user_info.json', 'itchat.pkl']
         
+        for f in file_list:
+            try: 
+                os.remove(f)
+            except OSError as err:
+                if err.errno == 2:
+                    pass
+                else:
+                    reset_flag = 0
+                    print(err)
+
+        if reset_flag == 1:
+            print(Fore.YELLOW + "Reset successed! All sensitive data are removed" + Fore.RESET)
+        else:
+            print(Fore.RED + "There is error when deleting some files, please check and do it manually" + Fore.RESET)
+    def help_reset_all(self):
+        print("Restore Factory Settings, erase all of your sensitive data...")
     #---------------------------------------------------------
     # can add more utility command below
     #---------------------------------------------------------
+    
     def default(self, input):
         '''
         # func used to capture stdout in real-time

@@ -3,6 +3,9 @@
 from colorama import init
 init()
 from colorama import Fore
+import os, sys
+root_dir = str(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(root_dir)
 from __prettytable import PrettyTable
 #from libs.utility.prettytable import PrettyTable
 
